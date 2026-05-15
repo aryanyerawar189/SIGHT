@@ -10,7 +10,7 @@ During the development and testing of the LILA Telemetry Dashboard, processing t
 - **Can you draw something actionable?** Yes. Programmatic pathing makes the game feel artificial to humans.
   - **Actionable Items:** Introduce internal navmesh variation (A* pathing noise) or "explore/loot" behavioral states to bots so they path through side corridors and buildings instead of strictly plotting the shortest distance to combat.
   - **Metrics Affected:** Bot survival duration (increases), Human-to-Bot combat engagements per square meter (more spread out), Player immersion ratings.
-- **Why a level designer should care:** Maps are designed with intricate flanking routes, side alleys, and varied elevations. If the primary population (bots) acts as a rigid conveyor belt, the map's complex geometries and pathing loops are effectively wasted. Bottraffic must organically utilize the space you built.
+- **Why a level designer should care:** Maps are designed with intricate flanking routes, side alleys, and varied elevations. If the primary population (bots) acts as a rigid conveyor belt, the map's complex geometries and pathing loops are effectively wasted. Bottraffic must organically utilize the space you built
 
 ---
 
