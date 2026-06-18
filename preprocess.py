@@ -22,8 +22,8 @@ def get_map_config(map_id):
     return None
 
 def process_data():
-    base_dir = r"D:\NEW\LILA\player data"
-    out_dir = r"D:\NEW\LILA\app\public\data"
+    base_dir = r"D:\NEW\SIGHT\player data"
+    out_dir = r"D:\NEW\SIGHT\app\public\data"
     os.makedirs(out_dir, exist_ok=True)
 
     all_data = []

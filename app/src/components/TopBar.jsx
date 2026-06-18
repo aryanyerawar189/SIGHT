@@ -34,8 +34,8 @@ export default function TopBar({
           </svg>
         </div>
         <div>
-          <h1 className="text-sm font-semibold text-white leading-none">LILA</h1>
-          <p className="text-[10px] text-zinc-500 leading-none mt-0.5">Level Analytics</p>
+          <h1 className="text-sm font-semibold text-white leading-none">SIGHT</h1>
+          <p className="text-[10px] text-zinc-500 leading-none mt-0.5">Spatial Analytics</p>
         </div>
       </div>
 

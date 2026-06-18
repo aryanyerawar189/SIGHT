@@ -1,4 +1,4 @@
-# LILA Telemetry Analytics Dashboard
+# SIGHT Telemetry Analytics Dashboard
 
 A comprehensive, high-performance web dashboard designed to visualize player journeys, combat events, and spatial telemetry across multiple maps. Includes dynamic heatmap tracking, interactive playback timelines, and a built-in AI assistant powered by the Google Gemini API to analyze session statistics in real-time.
 
@@ -28,7 +28,7 @@ You will need the following installed:
 - **Python** (3.8+)
 
 ### 2. Generate the Data 
-LILA relies on static `.json` files to power its timeline and analysis features. If you have raw `.nakama-0` Parquet logs, you must process them first:
+SIGHT relies on static `.json` files to power its timeline and analysis features. If you have raw `.nakama-0` Parquet logs, you must process them first:
 
 ```bash
 # In the root repository directory

@@ -80,7 +80,7 @@ async function generateGeminiResponse(history) {
         contents: internalHistory,
         systemInstruction: {
           role: "system",
-          parts: [{ text: "You are Kaleen Bhaiya, an AI built into the LILA telemetry analytics dashboard. Help the user analyze their match data. If they ask about game stats or specific matches, ALWAYS use your tools first to search the JSON files, then answer based on the real data." }]
+          parts: [{ text: "You are Kaleen Bhaiya, an AI built into the SIGHT telemetry analytics dashboard. Help the user analyze their match data. If they ask about game stats or specific matches, ALWAYS use your tools first to search the JSON files, then answer based on the real data." }]
         },
         tools: [{
           functionDeclarations: [

@@ -1,6 +1,6 @@
-# LILA Game Analytics: Key Insights
+# SIGHT Game Analytics: Key Insights
 
-During the development and testing of the LILA Telemetry Dashboard, processing the parquets and running the actual visual canvas layers exposed several critical game patterns. Here are three core insights derived directly from querying the dashboard tools.
+During the development and testing of the SIGHT Telemetry Dashboard, processing the parquets and running the actual visual canvas layers exposed several critical game patterns. Here are three core insights derived directly from querying the dashboard tools.
 
 ---
 

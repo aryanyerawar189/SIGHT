@@ -76,7 +76,7 @@ export default function Sidebar({
       <Box sx={{ px: 2.5, py: 1.5, borderBottom: 1, borderColor: 'divider', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <Box>
           <Typography variant="h6" sx={{ fontWeight: 700, background: 'linear-gradient(90deg, #818cf8, #a78bfa, #f472b6)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
-            LILA Analytics
+            SIGHT Analytics
           </Typography>
           <Typography variant="caption" sx={{ color: 'text.secondary', letterSpacing: 1.5, textTransform: 'uppercase', fontSize: '0.65rem' }}>
             Player Journey Visualizer
@@ -252,7 +252,7 @@ export default function Sidebar({
       {/* Footer */}
       <Box sx={{ px: 2.5, py: 1.5, borderTop: 1, borderColor: 'divider' }}>
         <Typography variant="caption" sx={{ color: 'text.disabled', display: 'block', textAlign: 'center', fontSize: '0.6rem' }}>
-          LILA · Level Intelligence & Layout Analytics
+          SIGHT · Spatial Intelligence for Game Heatmaps & Telemetry
         </Typography>
       </Box>
     </Box>
