@@ -5,8 +5,13 @@ import SmartToyIcon from '@mui/icons-material/SmartToy';
 import PersonIcon from '@mui/icons-material/Person';
 import ChatIcon from '@mui/icons-material/Chat';
 import CloseIcon from '@mui/icons-material/Close';
+import VpnKeyIcon from '@mui/icons-material/VpnKey';
 
-const API_KEY = 'AIzaSyDfQkZDL62hk4yq-2s2LeJth5_1ncM_B_U';
+function getApiKey() {
+  const envKey = import.meta.env.VITE_GEMINI_API_KEY;
+  if (envKey) return envKey;
+  return localStorage.getItem('lila_gemini_api_key') || '';
+}
 
 async function queryIndexInfo() {
   try {
@@ -67,13 +72,18 @@ async function queryTelemetryData(mapName, date) {
 }
 
 async function generateGeminiResponse(history) {
+  const apiKey = getApiKey();
+  if (!apiKey) {
+    throw new Error("Google Gemini API Key is not configured. Please enter your API Key in the settings panel (🔑 key icon at the top right of this sidebar).");
+  }
+
   let internalHistory = [...history.map(msg => ({
     role: msg.role === 'ai' ? 'model' : 'user',
     parts: [{ text: msg.text }]
   }))];
 
   while (true) {
-    const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${API_KEY}`, {
+    const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -144,6 +154,8 @@ export default function ChatSidebar() {
     { id: 1, role: 'ai', text: 'Hello! I am Kaleen Bhaiya. How can I help you analyze the match telemetry today?' }
   ]);
   const [loading, setLoading] = useState(false);
+  const [showSettings, setShowSettings] = useState(!getApiKey());
+  const [apiKeyInput, setApiKeyInput] = useState(localStorage.getItem('lila_gemini_api_key') || '');
   const messagesEndRef = useRef(null);
 
   const scrollToBottom = () => {
@@ -226,10 +238,104 @@ export default function ChatSidebar() {
             KALEEN BHAIYA
           </Typography>
         </Box>
-        <IconButton size="small" onClick={() => setIsOpen(false)} sx={{ color: 'text.secondary' }}>
-          <CloseIcon fontSize="small" />
-        </IconButton>
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
+          <Tooltip title="API Key Settings">
+            <IconButton size="small" onClick={() => setShowSettings(!showSettings)} sx={{ color: getApiKey() ? 'text.secondary' : '#ff9800' }}>
+              <VpnKeyIcon fontSize="small" />
+            </IconButton>
+          </Tooltip>
+          <IconButton size="small" onClick={() => setIsOpen(false)} sx={{ color: 'text.secondary' }}>
+            <CloseIcon fontSize="small" />
+          </IconButton>
+        </Box>
       </Box>
+
+      {/* API Key Settings Panel */}
+      <Collapse in={showSettings}>
+        <Box sx={{
+          p: 2,
+          borderBottom: 1,
+          borderColor: 'divider',
+          bgcolor: 'rgba(255, 255, 255, 0.02)',
+          display: 'flex',
+          flexDirection: 'column',
+          gap: 1.5
+        }}>
+          <Typography variant="caption" sx={{ fontWeight: 600, color: 'text.secondary', letterSpacing: 0.5 }}>
+            GEMINI API KEY SETTINGS
+          </Typography>
+          <TextField
+            fullWidth
+            size="small"
+            type="password"
+            label="Gemini API Key"
+            placeholder="AIzaSy..."
+            value={apiKeyInput}
+            onChange={(e) => setApiKeyInput(e.target.value)}
+            variant="outlined"
+            InputProps={{
+              sx: { fontSize: '0.8rem' }
+            }}
+          />
+          <Box sx={{ display: 'flex', gap: 1 }}>
+            <Typography
+              component="button"
+              onClick={() => {
+                localStorage.setItem('lila_gemini_api_key', apiKeyInput.trim());
+                setShowSettings(false);
+              }}
+              sx={{
+                cursor: 'pointer',
+                bgcolor: 'primary.main',
+                color: '#fff',
+                border: 'none',
+                px: 2,
+                py: 0.75,
+                borderRadius: 1,
+                fontSize: '0.75rem',
+                fontWeight: 600,
+                transition: 'background-color 0.2s',
+                '&:hover': { bgcolor: 'primary.dark' }
+              }}
+            >
+              Save Key
+            </Typography>
+            <Typography
+              component="button"
+              onClick={() => {
+                localStorage.removeItem('lila_gemini_api_key');
+                setApiKeyInput('');
+                setShowSettings(true);
+              }}
+              sx={{
+                cursor: 'pointer',
+                bgcolor: 'rgba(255,255,255,0.05)',
+                color: 'text.secondary',
+                border: 'none',
+                px: 2,
+                py: 0.75,
+                borderRadius: 1,
+                fontSize: '0.75rem',
+                transition: 'background-color 0.2s',
+                '&:hover': { bgcolor: 'rgba(255,255,255,0.1)' }
+              }}
+            >
+              Clear
+            </Typography>
+          </Box>
+          <Typography variant="caption" sx={{ color: 'text.disabled', fontSize: '0.7rem' }}>
+            Get your key from{' '}
+            <a
+              href="https://aistudio.google.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ color: '#00ff88', textDecoration: 'underline' }}
+            >
+              Google AI Studio
+            </a>.
+          </Typography>
+        </Box>
+      </Collapse>
 
       {/* Messages */}
       <Box sx={{

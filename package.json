@@ -1,4 +1,7 @@
 {
+  "scripts": {
+    "build": "npm run build --prefix app"
+  },
   "dependencies": {
     "heatmap.js": "^2.0.5",
     "konva": "^10.2.3",
@@ -10,3 +13,4 @@
     "tailwindcss": "^4.2.2"
   }
 }
+

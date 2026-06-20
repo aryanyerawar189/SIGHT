@@ -22,8 +22,9 @@ def get_map_config(map_id):
     return None
 
 def process_data():
-    base_dir = r"D:\NEW\SIGHT\player data"
-    out_dir = r"D:\NEW\SIGHT\app\public\data"
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    base_dir = os.path.abspath(os.path.join(script_dir, "..", "player_data", "player_data"))
+    out_dir = os.path.abspath(os.path.join(script_dir, "app", "public", "data"))
     os.makedirs(out_dir, exist_ok=True)
 
     all_data = []
