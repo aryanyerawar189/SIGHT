@@ -2,6 +2,8 @@
 
 A comprehensive, high-performance web dashboard designed to visualize player journeys, combat events, and spatial telemetry across multiple maps. Includes dynamic heatmap tracking, interactive playback timelines, and a built-in AI assistant powered by the Google Gemini API to analyze session statistics in real-time.
 
+To RUN : https://sight017.vercel.app/
+
 ## Tech Stack
 
 **Frontend Framework & Tooling**
